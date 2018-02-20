@@ -84,7 +84,8 @@ public class Bank {
         if (source.getAccountBalance() < amount) {
             return false;
         }
-        source.setAccountBalance(source.getAccountBalance() - amount);
+        double newSourceBalance = source.getAccountBalance() - amount;
+        source.setAccountBalance(newSourceBalance);
         destination.setAccountBalance(destination.getAccountBalance() + amount);
         return true;
     }
@@ -130,21 +131,22 @@ public class Bank {
         // Create Bank Accounts
         BankAccount account1 = new BankAccount("John Doe", BankAccount.BankAccountType.CHECKINGS);
         System.out.println("Bank account for John Doe created");
-        totalAccounts++;
 
         BankAccount account2 = new BankAccount("Jony Ive", BankAccount.BankAccountType.STUDENT);
         System.out.println("Bank account for Johy Ive created\n\n");
-        totalAccounts++;
 
         // Deposit money to both accounts and print new balance
         bank.depositMoney(account1, 1000.0);
-        bank.depositMoney(account2, 5000.0);
+        bank.depositMoney(account2, 500.0);
 
         // Withdraw money from Account 2 and print new balance
         bank.withdrawMoney(account2, 200.0);
+        System.out.println(account2.getAccountBalance());
 
         // Transfer money from Account 2 to Account 1 and print new balances
-        bank.transferMoney(account2, account1, 350.0);
+        bank.transferMoney(account2, account1, 300.0);
+        System.out.println(account1.getAccountBalance());
+        System.out.println(account2.getAccountBalance());
 
         // Print number of accounts
         System.out.print("Number of active accounts at " + bank.bankName + " are ");
